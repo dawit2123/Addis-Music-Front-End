@@ -31,9 +31,9 @@ const MusicDetail = () => {
     navigate("/");
   };
 
-  const backgroundImagePosition = `http://localhost:5000/img/music/${music.coverImage}.jpeg`;
+  const backgroundImagePosition = `https://addis-music-back-end-test-project.onrender.com/img/music/${music.coverImage}.jpeg`;
   const backgroundImageUrl = `url(${backgroundImagePosition})`;
-  const musicLocation = `http://localhost:5000/audio/music/${music.audioFile}`;
+  const musicLocation = `https://addis-music-back-end-test-project.onrender.com/audio/music/${music.audioFile}`;
 
   useEffect(() => {
     if (!music) {
