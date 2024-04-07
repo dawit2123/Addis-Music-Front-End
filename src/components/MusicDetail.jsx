@@ -169,8 +169,8 @@ const MusicDetail = () => {
                       <FaPlay
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                         size={50}
-                        onClick={() => {
-                          audioRef.current.play();
+                        onClick={async () => {
+                          await audioRef.current.play();
                           setPlaying(true);
                         }}
                       />
