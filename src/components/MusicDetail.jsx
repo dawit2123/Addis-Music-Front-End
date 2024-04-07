@@ -47,7 +47,7 @@ const MusicDetail = () => {
       audioRef.current.pause();
       audioRef.current.src = musicLocation;
     };
-  }, [dispatch, music]);
+  }, [dispatch]);
 
   const gradientBackground = `
     linear-gradient(
