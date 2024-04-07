@@ -9,7 +9,7 @@ import axios from "axios";
 
 function* GetMusicsFetch() {
   const musics = yield call(() =>
-    fetch("https://addis-music-back-end-test-project.onrender.com/api/v1/music")
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/music`)
   );
   const formattedMusic = yield musics.json();
   yield put(getMusicsSuccess(formattedMusic));
@@ -19,7 +19,7 @@ function* AddMusic(action) {
   try {
     const res = yield call(() =>
       axios.post(
-        "https://addis-music-back-end-test-project.onrender.com/api/v1/music/",
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/music/`,
         action.payload
       )
     );
@@ -32,7 +32,7 @@ function* DeleteMusic(action) {
   try {
     yield call(() =>
       axios.delete(
-        `https://addis-music-back-end-test-project.onrender.com/api/v1/music/${action.payload}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/music/${action.payload}`
       )
     );
     yield put(deleteMusicSuccess());
@@ -45,7 +45,7 @@ function* EditMusic(action) {
   try {
     const res = yield call(() => {
       return axios.patch(
-        `https://addis-music-back-end-test-project.onrender.com/api/v1/music/${action.payload.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/music/${action.payload.id}`,
         action.payload
       );
     });

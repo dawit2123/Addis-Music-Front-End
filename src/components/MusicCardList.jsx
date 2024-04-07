@@ -50,7 +50,7 @@ const Card = ({ artist, trackName, coverImage }) => {
   return (
     <Box css={cardStyles}>
       <img
-        src={`https://addis-music-back-end-test-project.onrender.com/img/music/${coverImage}.jpeg`}
+        src={`${import.meta.env.VITE_BACKEND_URL}/img/music/${coverImage}.jpeg`}
         alt={`${trackName} Cover`}
         css={css`
           width: 100%;
