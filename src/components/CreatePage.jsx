@@ -33,7 +33,7 @@ const CreatePage = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
     formDataToSend.append("title", formData.title);
@@ -41,11 +41,7 @@ const CreatePage = () => {
     formDataToSend.append("duration", formData.duration);
     formDataToSend.append("coverImage", formData.coverImage);
     formDataToSend.append("audioFile", formData.audioFile);
-    console.log(formDataToSend.audioFile);
-
-    // Wait for the dispatch to complete
-    await dispatch(addMusic(formDataToSend));
-
+    dispatch(addMusic(formDataToSend));
     navigate("/");
   };
 
@@ -114,16 +110,11 @@ const CreatePage = () => {
           type="file"
           name="audioFile"
           id="audioFile"
-          onChange={async (e) => {
+          onChange={(e) => {
+            console.log(e.target.files);
             setFormData({
               ...formData,
-              audioFile: await new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                  resolve(event.target.result);
-                };
-                reader.readAsDataURL(e.target.files[0]);
-              }),
+              audioFile: e.target.files[0],
             });
           }}
         />

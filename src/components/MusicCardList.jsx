@@ -47,6 +47,9 @@ const Card = ({ artist, trackName, coverImage }) => {
       box-shadow: 0 10px 14px rgba(0, 0, 0, 0.9);
     }
   `;
+  console.log(
+    `${import.meta.env.VITE_BACKEND_URL}/img/music/${coverImage}.jpeg`
+  );
   return (
     <Box css={cardStyles}>
       <img

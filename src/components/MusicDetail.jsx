@@ -47,6 +47,7 @@ const MusicDetail = () => {
       // Cleanup audio when component unmounts
       audioRef.current.pause();
       audioRef.current.src = musicLocation;
+      audioRef.current.load();
     };
   }, [dispatch, music]);
 
@@ -170,22 +171,8 @@ const MusicDetail = () => {
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                         size={50}
                         onClick={() => {
-                          if (!audioRef.current.src) {
-                            audioRef.current.src = musicLocation;
-                            audioRef.current.load();
-                            audioRef.current.addEventListener(
-                              "canplaythrough",
-                              () => {
-                                audioRef.current.play().then(() => {
-                                  setPlaying(true);
-                                });
-                              }
-                            );
-                          } else {
-                            audioRef.current.play().then(() => {
-                              setPlaying(true);
-                            });
-                          }
+                          audioRef.current.play();
+                          setPlaying(true);
                         }}
                       />
                     )}

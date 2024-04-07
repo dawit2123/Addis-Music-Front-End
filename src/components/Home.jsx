@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 function Home({ searchQuery }) {
   const { darkMode } = useSelector((state) => state.general);
-  console.log(import.meta.env.VITE_BACKEND_URL);
   const customStyle = css`
     padding: 20px;
     width: 100%;
