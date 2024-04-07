@@ -170,7 +170,6 @@ const MusicDetail = () => {
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                         size={50}
                         onClick={() => {
-                          audioRef.current.src = musicLocation;
                           audioRef.current.load();
                           audioRef.current.addEventListener(
                             "canplaythrough",
