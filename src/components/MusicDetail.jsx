@@ -170,10 +170,16 @@ const MusicDetail = () => {
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                         size={50}
                         onClick={() => {
-                          audioRef.current.play().then(() => {
-                            setPlaying(true);
-                          });
-                          setPlaying(true);
+                          audioRef.current.src = musicLocation;
+                          audioRef.current.load();
+                          audioRef.current.addEventListener(
+                            "canplaythrough",
+                            () => {
+                              audioRef.current.play().then(() => {
+                                setPlaying(true);
+                              });
+                            }
+                          );
                         }}
                       />
                     )}
