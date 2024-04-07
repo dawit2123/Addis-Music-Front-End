@@ -17,12 +17,11 @@ function* GetMusicsFetch() {
 
 function* AddMusic(action) {
   try {
-    const res = yield call(
-      async () =>
-        await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/api/v1/music/`,
-          action.payload
-        )
+    const res = yield call(() =>
+      axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/music/`,
+        action.payload
+      )
     );
     yield put(addMusicSuccess(res.data));
   } catch (error) {

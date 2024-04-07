@@ -51,9 +51,9 @@ const EditPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(editMusic(formData));
+    await dispatch(editMusic(formData));
     navigate("/");
   };
 

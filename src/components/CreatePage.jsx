@@ -41,6 +41,7 @@ const CreatePage = () => {
     formDataToSend.append("duration", formData.duration);
     formDataToSend.append("coverImage", formData.coverImage);
     formDataToSend.append("audioFile", formData.audioFile);
+    console.log(formDataToSend.audioFile);
 
     // Wait for the dispatch to complete
     await dispatch(addMusic(formDataToSend));
@@ -113,11 +114,16 @@ const CreatePage = () => {
           type="file"
           name="audioFile"
           id="audioFile"
-          onChange={(e) => {
-            console.log(e.target.files);
+          onChange={async (e) => {
             setFormData({
               ...formData,
-              audioFile: e.target.files[0],
+              audioFile: await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                  resolve(event.target.result);
+                };
+                reader.readAsDataURL(e.target.files[0]);
+              }),
             });
           }}
         />
