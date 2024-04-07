@@ -161,6 +161,12 @@ const MusicDetail = () => {
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                         size={50}
                         onClick={() => {
+                          audioRef.current.removeEventListener(
+                            "canplaythrough",
+                            () => {
+                              setLoading(false); // Set isLoading to false when music is loaded
+                            }
+                          );
                           audioRef.current.pause();
                           setPlaying(false);
                         }}
