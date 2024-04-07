@@ -176,9 +176,8 @@ const MusicDetail = () => {
                             audioRef.current.addEventListener(
                               "canplaythrough",
                               () => {
-                                audioRef.current.play().then(() => {
-                                  setPlaying(true);
-                                });
+                                setPlaying(true);
+                                audioRef.current.play();
                               }
                             );
                           } else {
