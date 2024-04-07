@@ -33,7 +33,7 @@ const CreatePage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
     formDataToSend.append("title", formData.title);
@@ -41,7 +41,10 @@ const CreatePage = () => {
     formDataToSend.append("duration", formData.duration);
     formDataToSend.append("coverImage", formData.coverImage);
     formDataToSend.append("audioFile", formData.audioFile);
-    dispatch(addMusic(formDataToSend));
+
+    // Wait for the dispatch to complete
+    await dispatch(addMusic(formDataToSend));
+
     navigate("/");
   };
 
