@@ -15,9 +15,8 @@ import axios from "axios";
 
 const MusicDetail = () => {
   const { _id } = useParams();
-  const audioRef = useRef(new Audio());
-
   const [isPlaying, setPlaying] = useState(false);
+  const audioRef = useRef(new Audio());
 
   const { musics, isLoading } = useSelector((state) => state.musics);
   const { darkMode } = useSelector((state) => state.general);
@@ -187,9 +186,8 @@ const MusicDetail = () => {
                               }
                             );
                           } else {
-                            audioRef.current.play().then(() => {
-                              setPlaying(true);
-                            });
+                            audioRef.current.play();
+                            setPlaying(true);
                           }
                         }}
                       />
