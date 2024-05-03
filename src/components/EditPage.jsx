@@ -35,7 +35,10 @@ const EditPage = () => {
     width: 100%;
     margin-bottom: 20px;
   `;
-
+  const buttonStyle = css`
+    cursor: pointer;
+    background-image: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  `;
   const [formData, setFormData] = useState({
     id: _id,
     title: music ? music.title : "",
@@ -90,7 +93,12 @@ const EditPage = () => {
           onChange={handleInputChange}
         />
       </Box>
-      <Button type="submit" color={"white"} backgroundColor={"green"}>
+      <Button
+        type="submit"
+        color={"white"}
+        backgroundColor={"green"}
+        css={buttonStyle}
+      >
         Save
       </Button>
     </Box>

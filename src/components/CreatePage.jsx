@@ -53,7 +53,10 @@ const CreatePage = () => {
     background: ${darkMode ? "#404040" : "white"};
     color: ${darkMode ? "white" : "black"};
   `;
-
+  const buttonStyle = css`
+    cursor: pointer;
+    background-image: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  `;
   return (
     <form
       css={formStyle}
@@ -68,6 +71,7 @@ const CreatePage = () => {
           id="title"
           value={formData.title}
           onChange={handleInputChange}
+          required
         />
       </Box>
       <Box css={inputStyle}>
@@ -78,6 +82,7 @@ const CreatePage = () => {
           id="artist"
           value={formData.artistName}
           onChange={handleInputChange}
+          required
         />
       </Box>
       <Box css={inputStyle}>
@@ -88,6 +93,7 @@ const CreatePage = () => {
           id="duration"
           value={formData.duration}
           onChange={handleInputChange}
+          required
         />
       </Box>
       <Box css={inputStyle}>
@@ -102,6 +108,7 @@ const CreatePage = () => {
               coverImage: e.target.files[0],
             });
           }}
+          required
         />
       </Box>
       <Box css={inputStyle}>
@@ -117,9 +124,15 @@ const CreatePage = () => {
               audioFile: e.target.files[0],
             });
           }}
+          required
         />
       </Box>
-      <Button type="submit" color={"white"} backgroundColor={"green"}>
+      <Button
+        type="submit"
+        color={"white"}
+        backgroundColor={"green"}
+        css={buttonStyle}
+      >
         Save
       </Button>
     </form>
