@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Box, Button, Flex, Heading, Text } from "rebass";
 import { css } from "@emotion/react";
@@ -11,12 +11,13 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-spinner";
 import { deleteMusic, editMusic, getMusicsFetch } from "../state/musicState";
+import ReactPlayer from "react-player"; // Import React Player
 import axios from "axios";
 
 const MusicDetail = () => {
   const { _id } = useParams();
   const [isPlaying, setPlaying] = useState(false);
-  const audioRef = useRef(new Audio());
+  const [musicUrl, setMusicUrl] = useState(""); // State to store music URL
 
   const { musics, isLoading } = useSelector((state) => state.musics);
   const { darkMode } = useSelector((state) => state.general);
@@ -24,6 +25,21 @@ const MusicDetail = () => {
   const music = musics.find((music) => music._id === _id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!music) {
+      dispatch(getMusicsFetch());
+    } else {
+      setMusicUrl(
+        `${import.meta.env.VITE_BACKEND_URL}/audio/music/${music.audioFile}`
+      );
+    }
+
+    return () => {
+      // Cleanup audio when component unmounts
+      setMusicUrl(""); // Reset music URL
+    };
+  }, [dispatch, music]);
 
   const handleDelete = () => {
     dispatch(deleteMusic(_id));
@@ -34,20 +50,6 @@ const MusicDetail = () => {
     import.meta.env.VITE_BACKEND_URL
   }/img/music/${music.coverImage}.jpeg`;
   const backgroundImageUrl = `url(${backgroundImagePosition})`;
-  const musicLocation = `${import.meta.env.VITE_BACKEND_URL}/audio/music/${
-    music.audioFile
-  }`;
-
-  useEffect(() => {
-    if (!music) {
-      dispatch(getMusicsFetch());
-    }
-    return () => {
-      // Cleanup audio when component unmounts
-      audioRef.current.pause();
-      audioRef.current.src = musicLocation;
-    };
-  }, [dispatch]);
 
   const gradientBackground = `
     linear-gradient(
@@ -159,37 +161,13 @@ const MusicDetail = () => {
                       <FaPause
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                         size={50}
-                        onClick={() => {
-                          audioRef.current.removeEventListener(
-                            "canplaythrough",
-                            () => {
-                              setLoading(false); // Set isLoading to false when music is loaded
-                            }
-                          );
-                          audioRef.current.pause();
-                          setPlaying(false);
-                        }}
+                        onClick={() => setPlaying(false)}
                       />
                     ) : (
                       <FaPlay
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                         size={50}
-                        onClick={() => {
-                          if (!audioRef.current.src) {
-                            audioRef.current.src = musicLocation;
-                            audioRef.current.load();
-                            audioRef.current.addEventListener(
-                              "canplaythrough",
-                              () => {
-                                setPlaying(true);
-                                audioRef.current.play();
-                              }
-                            );
-                          } else {
-                            audioRef.current.play();
-                            setPlaying(true);
-                          }
-                        }}
+                        onClick={() => setPlaying(true)}
                       />
                     )}
                     <Link
@@ -210,6 +188,19 @@ const MusicDetail = () => {
             </Box>
           )}
         </>
+      )}
+      {musicUrl && (
+        <ReactPlayer
+          url={musicUrl}
+          playing={isPlaying}
+          controls={false}
+          width="0"
+          height="0"
+          volume={1}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          onEnded={() => setPlaying(false)}
+        />
       )}
     </>
   );
