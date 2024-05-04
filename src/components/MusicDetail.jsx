@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Box, Button, Flex, Heading, Text } from "rebass";
 import { css } from "@emotion/react";
-import {
-  FaPlay,
-  FaPause,
-  FaArrowAltCircleLeft,
-  FaArrowCircleRight,
-} from "react-icons/fa";
+import { FaPlay, FaPause } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-spinner";
 import { deleteMusic, editMusic, getMusicsFetch } from "../state/musicState";
