@@ -4,17 +4,15 @@ import { Box, Button, Flex, Heading, Text } from "rebass";
 import { css } from "@emotion/react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import Spinner from "react-spinner";
 import { deleteMusic, editMusic, getMusicsFetch } from "../state/musicState";
 import ReactPlayer from "react-player"; // Import React Player
-import axios from "axios";
 
 const MusicDetail = () => {
   const { _id } = useParams();
   const [isPlaying, setPlaying] = useState(false);
   const [musicUrl, setMusicUrl] = useState(""); // State to store music URL
 
-  const { musics, isLoading } = useSelector((state) => state.musics);
+  const { musics, isLoadingState } = useSelector((state) => state.musics);
   const { darkMode } = useSelector((state) => state.general);
 
   const music = musics.find((music) => music._id === _id);
@@ -88,8 +86,17 @@ const MusicDetail = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Spinner />
+      {isLoadingState ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 50,
+          }}
+        >
+          <img src={loaderGif} />
+        </div>
       ) : (
         <>
           {music && (

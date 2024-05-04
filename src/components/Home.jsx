@@ -3,7 +3,6 @@ import { Box, Text } from "rebass";
 import { css } from "@emotion/react";
 import MusicCardList from "./MusicCardList";
 import { useSelector } from "react-redux";
-import Spinner from "react-spinner";
 import loaderGif from "./../assets/loader.gif";
 
 function Home({ searchQuery }) {
@@ -15,7 +14,6 @@ function Home({ searchQuery }) {
     background-color: ${darkMode ? "#404040" : "white"};
     color: ${darkMode ? "white" : "black"};
   `;
-  console.log("The result of is loading state is " + isLoadingState);
   return (
     <Box css={customStyle}>
       {isLoadingState ? (
