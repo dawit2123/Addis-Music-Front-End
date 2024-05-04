@@ -29,7 +29,9 @@ const Sidebar = () => {
 
   const sidebarStyle = css`
     width: 250px;
-    background-image: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+    background-image: ${darkMode
+      ? "linear-gradient(to right, #000000, #4D4855)"
+      : "linear-gradient(to right, #12c2e9, #c471ed, #f64f59)"};
     color: ${darkMode ? "white" : "black"};
     min-height: 90vh;
     padding-top: 20px;
