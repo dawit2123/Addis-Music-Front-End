@@ -118,7 +118,6 @@ const CreatePage = () => {
           name="audioFile"
           id="audioFile"
           onChange={(e) => {
-            console.log(e.target.files);
             setFormData({
               ...formData,
               audioFile: e.target.files[0],

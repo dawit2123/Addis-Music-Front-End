@@ -35,7 +35,6 @@ const Sidebar = () => {
     padding-top: 20px;
   `;
   const handleBoxClick = () => {
-    console.log("clicked");
     navigate("/");
   };
   const handleAboutBoxClick = () => {
