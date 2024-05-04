@@ -149,14 +149,14 @@ const MusicDetail = () => {
                     justifyContent={"space-around"}
                     style={{ marginTop: "30px" }}
                   >
-                    <Link
+                    {/* <Link
                       to={_id - 1 > 0 ? `/${parseInt(_id) - 1}` : `/${_id}`}
                     >
                       <FaArrowAltCircleLeft
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                         size={50}
                       />
-                    </Link>
+                    </Link> */}
                     {isPlaying ? (
                       <FaPause
                         style={{ color: `${darkMode ? "white" : "black"}` }}
@@ -170,7 +170,7 @@ const MusicDetail = () => {
                         onClick={() => setPlaying(true)}
                       />
                     )}
-                    <Link
+                    {/* <Link
                       to={
                         _id < musics.length
                           ? `/${parseInt(_id) + 1}`
@@ -181,7 +181,7 @@ const MusicDetail = () => {
                         size={50}
                         style={{ color: `${darkMode ? "white" : "black"}` }}
                       />
-                    </Link>
+                    </Link> */}
                   </Flex>
                 </Box>
               </Flex>
