@@ -6,7 +6,6 @@ import { Input, Label } from "@rebass/forms";
 import { useDispatch, useSelector } from "react-redux";
 import { addMusic } from "../state/musicState";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const inputStyle = css`
   width: 100%;
