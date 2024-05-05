@@ -9,6 +9,7 @@ import {
   FaArrowAltCircleLeft,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteMusic, editMusic, getMusicsFetch } from "../state/musicState";
 import ReactPlayer from "react-player";
 
 const MusicDetail = () => {
@@ -25,7 +26,6 @@ const MusicDetail = () => {
 
   const music = musics.find((music) => music._id === _id);
   const musicIndex = musics.indexOf(music);
-  console.log("Music index is " + musicIndex);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
