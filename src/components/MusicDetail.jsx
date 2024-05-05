@@ -214,6 +214,7 @@ const MusicDetail = () => {
                         cursor: "pointer",
                         marginLeft: "70px",
                         marginRight: "3px",
+                        height: "25px",
                       }} // Adjust width for the time spans
                       onClick={handleSeek}
                     />
