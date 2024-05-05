@@ -5,6 +5,8 @@ import { Input } from "@rebass/forms";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaPlusCircle } from "react-icons/fa";
+import { CiCirclePlus } from "react-icons/ci";
+
 import { FaMoon, FaSun } from "react-icons/fa";
 import { toggleDarkMode } from "../state/generalState";
 
@@ -79,13 +81,13 @@ const Header = ({ handleSearch }) => {
           <Button
             css={css`
               padding: 0;
-              background-color: ${darkMode ? "#404040" : "white"};
+              background-color: ${darkMode ? "#4C4754" : "#7DCEC7"};
               cursor: pointer;
             `}
           >
             <FaPlusCircle
               css={css`
-                color: ${darkMode ? "white" : "green"};
+                color: ${darkMode ? "white" : "black"};
                 border-radius: 50%;
               `}
               size={40}
