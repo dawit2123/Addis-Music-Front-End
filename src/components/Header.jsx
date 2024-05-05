@@ -69,7 +69,7 @@ const Header = ({ handleSearch }) => {
 
       <Box css={avatarStyle}>
         <label
-          style={{ margin: "0 1.2rem" }}
+          style={{ margin: "0 1.2rem", cursor: "pointer" }}
           onClick={() => dispatch(toggleDarkMode(!darkMode))}
         >
           {darkMode ? <FaSun size={37} /> : <FaMoon size={37} />}
@@ -80,6 +80,7 @@ const Header = ({ handleSearch }) => {
             css={css`
               padding: 0;
               background-color: ${darkMode ? "#404040" : "white"};
+              cursor: pointer;
             `}
           >
             <FaPlusCircle

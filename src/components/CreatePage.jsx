@@ -20,7 +20,6 @@ const CreatePage = () => {
   const [formData, setFormData] = useState({
     title: "",
     artistName: "",
-    duration: "",
     coverImage: null, // Initialize coverImage as null
     audioFile: null,
   });
@@ -38,7 +37,6 @@ const CreatePage = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("title", formData.title);
     formDataToSend.append("artistName", formData.artistName);
-    formDataToSend.append("duration", formData.duration);
     formDataToSend.append("coverImage", formData.coverImage);
     formDataToSend.append("audioFile", formData.audioFile);
     dispatch(addMusic(formDataToSend));
@@ -85,17 +83,7 @@ const CreatePage = () => {
           required
         />
       </Box>
-      <Box css={inputStyle}>
-        <Label htmlFor="duration">Duration:</Label>
-        <Input
-          type="text"
-          name="duration"
-          id="duration"
-          value={formData.duration}
-          onChange={handleInputChange}
-          required
-        />
-      </Box>
+
       <Box css={inputStyle}>
         <Label htmlFor="coverImage">Cover Image:</Label>
         <Input

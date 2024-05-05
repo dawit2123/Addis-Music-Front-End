@@ -1,21 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Box, Button, Flex, Heading, Text } from "rebass";
 import { css } from "@emotion/react";
-import { FaPlay, FaPause } from "react-icons/fa";
+import {
+  FaPlay,
+  FaPause,
+  FaArrowCircleRight,
+  FaArrowAltCircleLeft,
+} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMusic, editMusic, getMusicsFetch } from "../state/musicState";
-import ReactPlayer from "react-player"; // Import React Player
+import ReactPlayer from "react-player";
 
 const MusicDetail = () => {
+  const player = useRef(null); // Define player ref
   const { _id } = useParams();
   const [isPlaying, setPlaying] = useState(false);
+  const [progress, setProgress] = useState(0); // State to store progress of the music
+  const [duration, setDuration] = useState(0); // State to store duration of the music
+  const [seeking, setSeeking] = useState(false); // State to track seeking state
   const [musicUrl, setMusicUrl] = useState(""); // State to store music URL
 
   const { musics, isLoadingState } = useSelector((state) => state.musics);
   const { darkMode } = useSelector((state) => state.general);
 
   const music = musics.find((music) => music._id === _id);
+  const musicIndex = musics.indexOf(music);
+  console.log("Music index is " + musicIndex);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -84,6 +94,23 @@ const MusicDetail = () => {
     gap: 20px;
   `;
 
+  // Function to format time in seconds to mm:ss format
+  const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
+  };
+  const handleSeek = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = x / e.target.offsetWidth;
+    setProgress(percentage);
+    const newTime = percentage * duration;
+    player.current.seekTo(newTime);
+  };
+
   return (
     <>
       {isLoadingState ? (
@@ -111,6 +138,7 @@ const MusicDetail = () => {
                     top: "10px",
                     right: "10px",
                     width: "5em",
+                    cursor: "pointer",
                   }}
                 >
                   Delete
@@ -124,6 +152,7 @@ const MusicDetail = () => {
                       top: "50px",
                       right: "10px",
                       width: "5em",
+                      cursor: "pointer",
                     }}
                   >
                     Edit
@@ -140,50 +169,119 @@ const MusicDetail = () => {
                       />
                       <Box>
                         <Heading>{music.title}</Heading>
-                        <Text>{music.artist}</Text>
+                        <Text>{music.artistName}</Text>
                       </Box>
                     </Box>
 
-                    <Box css={firstBox}>{music.duration}</Box>
+                    <Box css={firstBox}>
+                      <span>Total Duration:</span>
+                      {music.duration}
+                    </Box>
                   </Flex>
-
+                  {/* Progress Bar with Time Showing */}
+                  <div
+                    style={{
+                      width: "100%",
+                      position: "relative",
+                      marginTop: "20px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "20px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "100px", // Adjust width for the time spans
+                      }}
+                    >
+                      <span
+                        style={{
+                          position: "absolute",
+                          left: 0,
+                          backgroundColor: "black",
+                        }}
+                      >
+                        00:00
+                      </span>
+                    </div>
+                    {/* Starting time */}
+                    <progress
+                      value={progress}
+                      max={1}
+                      style={{
+                        width: "calc(100% - 112px)",
+                        cursor: "pointer",
+                        marginLeft: "70px",
+                        marginRight: "3px",
+                      }} // Adjust width for the time spans
+                      onClick={handleSeek}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        right: "0",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "65px", // Adjust width for the time spans
+                      }}
+                    >
+                      <span
+                        style={{
+                          position: "absolute",
+                          left: 30,
+                          backgroundColor: "black",
+                          marginTop: "-22px",
+                        }}
+                      >
+                        {formatTime(progress * duration)}
+                      </span>
+                    </div>
+                  </div>
                   <Flex
                     justifyContent={"space-around"}
                     style={{ marginTop: "30px" }}
                   >
-                    {/* <Link
-                      to={_id - 1 > 0 ? `/${parseInt(_id) - 1}` : `/${_id}`}
-                    >
-                      <FaArrowAltCircleLeft
-                        style={{ color: `${darkMode ? "white" : "black"}` }}
-                        size={50}
-                      />
-                    </Link> */}
+                    <FaArrowAltCircleLeft
+                      style={{
+                        color: `${darkMode ? "white" : "black"}`,
+                        cursor: "pointer",
+                      }}
+                      size={50}
+                      onClick={() => {
+                        navigate(`/${musics[musicIndex - 1]._id}`);
+                      }}
+                    />
                     {isPlaying ? (
                       <FaPause
-                        style={{ color: `${darkMode ? "white" : "black"}` }}
+                        style={{
+                          color: `${darkMode ? "white" : "black"}`,
+                          cursor: "pointer",
+                        }}
                         size={50}
                         onClick={() => setPlaying(false)}
                       />
                     ) : (
                       <FaPlay
-                        style={{ color: `${darkMode ? "white" : "black"}` }}
+                        style={{
+                          color: `${darkMode ? "white" : "black"}`,
+                          cursor: "pointer",
+                        }}
                         size={50}
                         onClick={() => setPlaying(true)}
                       />
                     )}
-                    {/* <Link
-                      to={
-                        _id < musics.length
-                          ? `/${parseInt(_id) + 1}`
-                          : `/${_id}`
-                      }
-                    >
-                      <FaArrowCircleRight
-                        size={50}
-                        style={{ color: `${darkMode ? "white" : "black"}` }}
-                      />
-                    </Link> */}
+
+                    <FaArrowCircleRight
+                      size={50}
+                      style={{
+                        color: `${darkMode ? "white" : "black"}`,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        navigate(`/${musics[musicIndex + 1]._id}`);
+                      }}
+                    />
                   </Flex>
                 </Box>
               </Flex>
@@ -193,6 +291,7 @@ const MusicDetail = () => {
       )}
       {musicUrl && (
         <ReactPlayer
+          ref={player}
           url={musicUrl}
           playing={isPlaying}
           controls={false}
@@ -202,6 +301,14 @@ const MusicDetail = () => {
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={() => setPlaying(false)}
+          onProgress={(state) => {
+            if (!seeking) {
+              setProgress(state.played);
+            }
+          }}
+          onDuration={(duration) => {
+            setDuration(duration);
+          }}
         />
       )}
     </>

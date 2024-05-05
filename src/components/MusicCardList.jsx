@@ -44,8 +44,11 @@ const Card = ({ artist, trackName, coverImage }) => {
     color: ${darkMode ? "white" : "black"};
     transition: box-shadow 0.5s ease-in-out;
     transition: width 0.5s ease-in-out;
+    box-shadow: 0 14px 18px rgba(0, 0, 0, 0.4);
+
     &:hover {
       box-shadow: 0 10px 14px rgba(0, 0, 0, 0.9);
+      transform: translate(2px, 2px) scale(1.15);
     }
   `;
 

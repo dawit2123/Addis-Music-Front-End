@@ -43,7 +43,6 @@ const EditPage = () => {
     id: _id,
     title: music ? music.title : "",
     artist: music ? music.artistName : "",
-    duration: music ? music.duration : "",
   });
 
   const handleInputChange = (e) => {
@@ -83,16 +82,7 @@ const EditPage = () => {
           onChange={handleInputChange}
         />
       </Box>
-      <Box css={inputStyle}>
-        <Label htmlFor="duration">Duration:</Label>
-        <Input
-          type="text"
-          name="duration"
-          id="duration"
-          value={formData.duration}
-          onChange={handleInputChange}
-        />
-      </Box>
+
       <Button
         type="submit"
         color={"white"}
