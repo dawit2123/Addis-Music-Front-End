@@ -64,7 +64,7 @@ const MusicDetail = () => {
 
   const styles = css`
     background: ${gradientBackground};
-    background-size: 100% auto;
+    background-size: 100% 100%;
     background-position: center;
     width: 100%;
     min-height: 100vh;
