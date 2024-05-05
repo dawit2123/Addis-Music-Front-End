@@ -5,7 +5,6 @@ import { Input } from "@rebass/forms";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaPlusCircle } from "react-icons/fa";
-import { CiCirclePlus } from "react-icons/ci";
 
 import { FaMoon, FaSun } from "react-icons/fa";
 import { toggleDarkMode } from "../state/generalState";
