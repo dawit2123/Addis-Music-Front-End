@@ -26,6 +26,16 @@ function Home({ searchQuery }) {
           }}
         >
           <img src={loaderGif} />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 50,
+            }}
+          >
+            <h2>Loading... Please wait</h2>
+          </div>
         </div>
       ) : (
         <MusicCardList searchQuery={searchQuery} />
