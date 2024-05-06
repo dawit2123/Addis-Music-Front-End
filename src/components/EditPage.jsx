@@ -42,11 +42,12 @@ const EditPage = () => {
   const [formData, setFormData] = useState({
     id: _id,
     title: music ? music.title : "",
-    artist: music ? music.artistName : "",
+    artistName: music ? music.artistName : "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
       [name]: value,
@@ -56,7 +57,6 @@ const EditPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(editMusic(formData));
-
     navigate("/");
   };
 
@@ -76,9 +76,9 @@ const EditPage = () => {
         <Label htmlFor="artist">Artist:</Label>
         <Input
           type="text"
-          name="artist"
-          id="artist"
-          value={formData.artist}
+          name="artistName"
+          id="artistName"
+          value={formData.artistName}
           onChange={handleInputChange}
         />
       </Box>
