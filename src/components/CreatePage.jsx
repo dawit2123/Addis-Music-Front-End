@@ -31,8 +31,27 @@ const CreatePage = () => {
     });
   };
 
+  const validateFile = (file, fileType) => {
+    const allowedFileTypes =
+      fileType === "image" ? ["image/jpeg", "image/png"] : ["audio/mpeg"];
+    return allowedFileTypes.includes(file.type);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validate cover image
+    if (!validateFile(formData.coverImage, "image")) {
+      alert("Upload only JPEG or PNG images for cover image");
+      return;
+    }
+
+    // Validate audio file
+    if (!validateFile(formData.audioFile, "audio")) {
+      alert("Upload only MP3 files for audio");
+      return;
+    }
+
     const formDataToSend = new FormData();
     formDataToSend.append("title", formData.title);
     formDataToSend.append("artistName", formData.artistName);
@@ -89,6 +108,7 @@ const CreatePage = () => {
           type="file"
           name="coverImage"
           id="coverImage"
+          accept="image/jpeg, image/png"
           onChange={(e) => {
             setFormData({
               ...formData,
@@ -104,6 +124,7 @@ const CreatePage = () => {
           type="file"
           name="audioFile"
           id="audioFile"
+          accept=".mp3"
           onChange={(e) => {
             setFormData({
               ...formData,
