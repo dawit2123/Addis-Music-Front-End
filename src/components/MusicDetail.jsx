@@ -246,7 +246,11 @@ const MusicDetail = () => {
                     {musicIndex == 0 ? (
                       <FaArrowAltCircleLeft
                         style={{
-                          color: `${darkMode ? "white" : "rgba(0, 0, 0, 0.2)"}`,
+                          color: `${
+                            darkMode
+                              ? "rgba(255, 255, 255, 0.2)"
+                              : "rgba(0, 0, 0, 0.2)"
+                          }`,
                         }}
                         size={50}
                       />
@@ -297,7 +301,11 @@ const MusicDetail = () => {
                       <FaArrowCircleRight
                         size={50}
                         style={{
-                          color: `${darkMode ? "white" : "rgba(0, 0, 0, 0.2)"}`,
+                          color: `${
+                            darkMode
+                              ? "rgba(255, 255, 255, 0.2)"
+                              : "rgba(0, 0, 0, 0.2)"
+                          }`,
                         }}
                       />
                     )}
