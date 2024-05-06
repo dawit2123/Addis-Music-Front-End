@@ -16,7 +16,7 @@ function Home({ searchQuery }) {
   `;
   return (
     <Box css={customStyle}>
-      {true ? (
+      {isLoadingState ? (
         <div>
           <div
             style={{
