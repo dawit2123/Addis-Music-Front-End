@@ -31,8 +31,8 @@ const Header = ({ handleSearch }) => {
   const dispatch = useDispatch();
   const headerStyle = css`
     background-image: ${darkMode
-      ? "linear-gradient(to right, rgba(0,0,0,0.89), #4D4855)"
-      : "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)"};
+      ? "linear-gradient(to right, rgba(0,0,0,0.89), rgba(0,0,0,0.4))"
+      : "linear-gradient(160deg, rgba(0, 147, 233, 0.8) 0%, rgba(0, 147, 233, 0.4) 100%)"};
     color: ${darkMode ? "white" : "#000"};
     padding: 15px;
     border-bottom: 1px white solid;
