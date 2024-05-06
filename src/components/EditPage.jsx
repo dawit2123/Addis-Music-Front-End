@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editMusic, getMusicsFetch } from "../state/musicState";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const EditPage = () => {
   const navigate = useNavigate();
