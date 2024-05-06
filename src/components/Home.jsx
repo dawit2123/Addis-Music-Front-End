@@ -16,16 +16,8 @@ function Home({ searchQuery }) {
   `;
   return (
     <Box css={customStyle}>
-      {isLoadingState ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 50,
-          }}
-        >
-          <img src={loaderGif} />
+      {true ? (
+        <div>
           <div
             style={{
               display: "flex",
@@ -34,8 +26,9 @@ function Home({ searchQuery }) {
               marginTop: 50,
             }}
           >
-            <h2>Loading... Please wait</h2>
+            <img src={loaderGif} />
           </div>
+          <h2 style={{ textAlign: "center" }}>Loading... Please wait</h2>
         </div>
       ) : (
         <MusicCardList searchQuery={searchQuery} />
