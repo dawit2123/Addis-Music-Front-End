@@ -232,7 +232,7 @@ const MusicDetail = () => {
                           position: "absolute",
                           left: 30,
                           backgroundColor: "black",
-                          marginTop: "-22px",
+                          marginTop: "-26px",
                         }}
                       >
                         {formatTime(progress * duration)}
