@@ -243,16 +243,26 @@ const MusicDetail = () => {
                     justifyContent={"space-around"}
                     style={{ marginTop: "30px" }}
                   >
-                    <FaArrowAltCircleLeft
-                      style={{
-                        color: `${darkMode ? "white" : "black"}`,
-                        cursor: "pointer",
-                      }}
-                      size={50}
-                      onClick={() => {
-                        navigate(`/${musics[musicIndex - 1]._id}`);
-                      }}
-                    />
+                    {musicIndex == 0 ? (
+                      <FaArrowAltCircleLeft
+                        style={{
+                          color: `${darkMode ? "white" : "rgba(0, 0, 0, 0.2)"}`,
+                        }}
+                        size={50}
+                      />
+                    ) : (
+                      <FaArrowAltCircleLeft
+                        style={{
+                          color: `${darkMode ? "white" : "black"}`,
+                          cursor: "pointer",
+                        }}
+                        size={50}
+                        onClick={() => {
+                          navigate(`/${musics[musicIndex - 1]._id}`);
+                        }}
+                      />
+                    )}
+
                     {isPlaying ? (
                       <FaPause
                         style={{
@@ -272,17 +282,25 @@ const MusicDetail = () => {
                         onClick={() => setPlaying(true)}
                       />
                     )}
-
-                    <FaArrowCircleRight
-                      size={50}
-                      style={{
-                        color: `${darkMode ? "white" : "black"}`,
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        navigate(`/${musics[musicIndex + 1]._id}`);
-                      }}
-                    />
+                    {musicIndex < musics.length - 1 ? (
+                      <FaArrowCircleRight
+                        size={50}
+                        style={{
+                          color: `${darkMode ? "white" : "black"}`,
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
+                          navigate(`/${musics[musicIndex + 1]._id}`);
+                        }}
+                      />
+                    ) : (
+                      <FaArrowCircleRight
+                        size={50}
+                        style={{
+                          color: `${darkMode ? "white" : "rgba(0, 0, 0, 0.2)"}`,
+                        }}
+                      />
+                    )}
                   </Flex>
                 </Box>
               </Flex>
