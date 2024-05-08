@@ -80,7 +80,7 @@ const Header = ({ handleSearch }) => {
           <Button
             css={css`
               padding: 0;
-              background-color: ${darkMode ? "#4C4754" : "#95D2F5"};
+              background-color: ${darkMode ? "#989898" : "#95D2F5"};
               cursor: pointer;
             `}
           >
