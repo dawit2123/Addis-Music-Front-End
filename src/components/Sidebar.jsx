@@ -31,7 +31,7 @@ const Sidebar = () => {
     width: 250px;
     background-image: ${darkMode
       ? "linear-gradient(to right, rgba(0,0,0,0.89), rgba(0,0,0,0.4))"
-      : "linear-gradient(160deg, rgba(0, 147, 233, 0.8) 0%, rgba(0, 147, 233, 0.4) 100%)"};
+      : "linear-gradient(to right, rgba(0, 147, 233, 0.4) 0%, rgba(0, 147, 233, 0.1) 100%)"};
     color: ${darkMode ? "white" : "black"};
     min-height: 90vh;
     padding-top: 20px;
