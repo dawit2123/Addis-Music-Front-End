@@ -32,7 +32,7 @@ const Header = ({ handleSearch }) => {
   const headerStyle = css`
     background-image: ${darkMode
       ? "linear-gradient(to right, rgba(0,0,0,0.89), rgba(0,0,0,0.4))"
-      : "linear-gradient(160deg, rgba(0, 147, 233, 0.8) 0%, rgba(0, 147, 233, 0.4) 100%)"};
+      : "linear-gradient(160deg, rgba(0, 147, 233, 0.4) 0%, rgba(0, 147, 233, 0.1) 100%)"};
     color: ${darkMode ? "white" : "#000"};
     padding: 15px;
     border-bottom: 1px white solid;
@@ -80,7 +80,7 @@ const Header = ({ handleSearch }) => {
           <Button
             css={css`
               padding: 0;
-              background-color: ${darkMode ? "#989898" : "#95D2F5"};
+              background-color: ${darkMode ? "#989898" : "#DCF0FC"};
               cursor: pointer;
             `}
           >
