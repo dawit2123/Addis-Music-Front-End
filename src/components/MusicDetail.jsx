@@ -206,7 +206,9 @@ const MusicDetail = () => {
                       </span>
                     </div>
                     {/* Starting time */}
-                    <progress
+
+                    <input
+                      type="range"
                       value={progress}
                       max={1}
                       style={{
@@ -215,7 +217,7 @@ const MusicDetail = () => {
                         marginLeft: "70px",
                         marginRight: "3px",
                         height: "25px",
-                      }} // Adjust width for the time spans
+                      }}
                       onClick={handleSeek}
                     />
                     <div
