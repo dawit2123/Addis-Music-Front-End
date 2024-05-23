@@ -80,7 +80,6 @@ const EditPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("the resul of validate form is" + validateForm());
     if (!validateForm()) {
       return;
     }
@@ -110,7 +109,7 @@ const EditPage = () => {
           value={formData.artistName}
           onChange={handleInputChange}
         />
-        {errors.title && (
+        {errors.artistName && (
           <span style={{ color: "red" }}>{errors.artistName}</span>
         )}
       </Box>
